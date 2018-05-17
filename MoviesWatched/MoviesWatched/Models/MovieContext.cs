@@ -13,5 +13,6 @@ namespace MoviesWatched.Models
 
         }
         DbSet<Movie> Movies { get; set; }
+        DbSet<User> Users { get; set; }
     }
 }

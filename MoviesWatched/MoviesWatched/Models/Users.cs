@@ -6,14 +6,11 @@ using System.Web;
 
 namespace MoviesWatched.Models
 {
-    public class Movie
+    public class User
     {
         [Key]
         public int ID { get; set; }
-        public string title { get; set; }
-        public int yearReleased { get; set; }
-        public TimeSpan length { get; set; }
-        public List<User> UsersWatched { get; set; }
-
+        public string Name { get; set; }
+        public List<Movie> MoviesWatched { get; set; }
     }
 }
