@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Saule.Http;
 
 namespace MoviesWatched
 {
@@ -14,6 +15,7 @@ namespace MoviesWatched
             // Web API routes
             config.EnableCors();
             config.MapHttpAttributeRoutes();
+            config.ConfigureJsonApi();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -9,10 +9,12 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using MoviesWatched.Models;
+using Saule.Http;
 
 namespace MoviesWatched.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [ReturnsResource(typeof(MovieResource))]
     public class MoviesController : ApiController
     {
         private MovieContext db = new MovieContext();

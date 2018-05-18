@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saule;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,12 +12,24 @@ namespace MoviesWatched.Models
         [Key]
         public int ID { get; set; }
         [Display(Name = "Movie Title")]
-        public string title { get; set; }
+        public string Title { get; set; }
         [Display(Name = "Year")]
-        public int yearReleased { get; set; }
+        public int YearReleased { get; set; }
         [Display(Name = "Length")]
-        public TimeSpan length { get; set; }
+        public TimeSpan Length { get; set; }
         public List<User> UsersWatched { get; set; }
+
+    }
+    public class MovieResource : ApiResource
+    {
+        public MovieResource()
+        {
+            OfType("Movies");
+            Attribute("Title");
+            Attribute("YearReleased");
+            Attribute("Length");
+            WithId("ID");
+        }
 
     }
 }
