@@ -18,7 +18,10 @@ namespace MoviesWatched.Controllers
     public class MoviesController : ApiController
     {
         private MovieContext db = new MovieContext();
-
+        public string OptionsMovie()
+        {
+            return null;
+        }
         // GET: api/Movies
         public IQueryable<Movie> GetMovies()
         {
@@ -41,6 +44,40 @@ namespace MoviesWatched.Controllers
         // PUT: api/Movies/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMovie(int id, Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != movie.ID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(movie).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MovieExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpPatch]
+        public IHttpActionResult PatchMovie(int id, Movie movie)
         {
             if (!ModelState.IsValid)
             {
