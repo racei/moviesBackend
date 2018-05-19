@@ -29,6 +29,7 @@ namespace MoviesWatched.Models
             Attribute("YearReleased");
             Attribute("Length");
             WithId("ID");
+            HasMany<UserResource>("Users");
         }
 
     }

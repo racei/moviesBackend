@@ -21,6 +21,7 @@ namespace MoviesWatched.Models
         {
             WithId("ID");
             Attribute("Name");
+            HasMany<MovieResource>("Movies");
         }
     }
 }
