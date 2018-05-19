@@ -105,6 +105,40 @@ namespace MoviesWatched.Controllers
             return Ok(user);
         }
 
+        [HttpPatch]
+        public IHttpActionResult PatchUser(int id, User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != user.ID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
