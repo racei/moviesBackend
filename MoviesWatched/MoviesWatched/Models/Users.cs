@@ -1,4 +1,4 @@
-﻿using Saule;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,21 +7,13 @@ using System.Web;
 
 namespace MoviesWatched.Models
 {
+    [JsonObject(Title = "User")]
     public class User
     {
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Movie> MoviesWatched { get; set; }
+        public virtual List<Movie> MoviesWatched { get; set; }
     }
 
-    public class UserResource : ApiResource
-    {
-        public UserResource()
-        {
-            WithId("ID");
-            Attribute("Name");
-            HasMany<MovieResource>("Movies");
-        }
-    }
 }

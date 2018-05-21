@@ -1,4 +1,4 @@
-﻿using Saule;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +7,7 @@ using System.Web;
 
 namespace MoviesWatched.Models
 {
+    [JsonObject(Title="Movie")]
     public class Movie
     {
         [Key]
@@ -17,20 +18,7 @@ namespace MoviesWatched.Models
         public int YearReleased { get; set; }
         [Display(Name = "Length")]
         public TimeSpan Length { get; set; }
-        public List<User> UsersWatched { get; set; }
-
-    }
-    public class MovieResource : ApiResource
-    {
-        public MovieResource()
-        {
-            OfType("Movies");
-            Attribute("Title");
-            Attribute("YearReleased");
-            Attribute("Length");
-            WithId("ID");
-            HasMany<UserResource>("Users");
-        }
+        public virtual List<User> UsersWatched { get; set; }
 
     }
 }

@@ -56,9 +56,6 @@
       <HintPath>..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Saule, Version=1.7.0.538, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\saule.1.7.0.538\lib\net45\Saule.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />

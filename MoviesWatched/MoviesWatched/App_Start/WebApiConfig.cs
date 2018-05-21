@@ -7,7 +7,6 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Newtonsoft.Json.Serialization;
-using Saule.Http;
 
 namespace MoviesWatched
 {
