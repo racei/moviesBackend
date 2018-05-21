@@ -14,7 +14,6 @@ using Saule.Http;
 namespace MoviesWatched.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [ReturnsResource(typeof(MovieResource))]
     public class MoviesController : ApiController
     {
         private MovieContext db = new MovieContext();
@@ -54,8 +53,21 @@ namespace MoviesWatched.Controllers
             {
                 return BadRequest();
             }
-
+            var usersWatched = movie.UsersWatched;
+            movie.UsersWatched = null;
+            if(usersWatched != null && usersWatched.Count > 0)
+            {
+                foreach(User u in usersWatched)
+                {
+                    db.Entry(u).State = EntityState.Modified;
+                }
+            }
             db.Entry(movie).State = EntityState.Modified;
+            db.Entry(movie).Collection(x => x.UsersWatched).Load();
+            var userIDs = usersWatched.Select(x => x.ID);
+            var newUsers = db.Users.Where(x => userIDs.Contains(x.ID)).ToList();
+            
+            movie.UsersWatched = newUsers;
 
             try
             {

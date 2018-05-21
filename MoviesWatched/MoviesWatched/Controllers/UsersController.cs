@@ -15,7 +15,6 @@ using Saule.Http;
 namespace MoviesWatched.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [ReturnsResource(typeof(UserResource))]
     public class UsersController : ApiController
     {
         private MovieContext db = new MovieContext();
