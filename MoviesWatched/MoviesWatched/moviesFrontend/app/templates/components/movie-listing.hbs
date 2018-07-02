@@ -1,0 +1,42 @@
+{{#if editing}}
+    <div class="form-group">
+        <h1>Editing {{movie.title}}</h1>
+        <label for={{concat elementId '-title'}}>Name</label>
+        {{input value=movie.title type=text class="form-control" id=(concat elementId '-title')}}
+        <label for={{concat elementId '-yearReleased'}}>Year Released</label>
+        {{input value=movie.yearReleased type=text class="form-control" id=(concat elementId '-yearReleased')}}
+        <label for={{concat elementId '-length'}}>Length</label>
+        {{input value=movie.length type=text class="form-control" id=(concat elementId '-length')}}
+        <label>Watched by:</label>
+        <ul class="list-group">
+            {{#each movie.usersWatched as |user|}}
+                <li class="list-group-item">
+                    {{user.name}}
+                    <button class="btn btn-danger" {{action "removeUserFromMovie" movie user}}>X</button>
+                </li>
+            {{/each}}
+        </ul>
+        Select a user to add:
+        <select class="form-control">
+            {{#each users as |user|}}
+                <option {{action "addUserToMovie" movie user}}value={{user.id}}>{{user.name}}</option>
+            {{/each}}
+        </select>
+        <div>
+            <button class="btn btn-primary" {{action "saveMovie" movie}}>Save</button>
+            <button class="btn btn-danger" {{action "deleteMovie" movie.id}}>Delete Movie</button>
+        </div>
+    </div>
+{{else}}
+    <h1>{{movie.title}} <small>({{movie.yearReleased}})</small></h1>
+    <div>Length {{time-formatter movie.length}}</div>
+    Watched by:
+    <ul class="list-group">
+        {{#each movie.usersWatched as |user|}}
+            <li class="list-group-item">{{user.name}}</li>
+        {{else}}
+            No one yet...
+        {{/each}}
+    </ul>
+    <button class="btn btn-primary"{{action "editMovie"}}>Edit</button>
+{{/if}}

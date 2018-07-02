@@ -1,0 +1,15 @@
+<div class="container">
+    {{#bs-navbar as |navbar|}}
+    {{#navbar.content}}
+        {{#navbar.nav as |nav|}}
+        {{#nav.item}}
+            {{#nav.link-to "movies"}}Movies{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+            {{#nav.link-to "users"}}Users{{/nav.link-to}}
+        {{/nav.item}}
+        {{/navbar.nav}}
+    {{/navbar.content}}
+    {{/bs-navbar}}
+    {{outlet}}
+</div>

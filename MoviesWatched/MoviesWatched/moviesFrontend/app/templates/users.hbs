@@ -1,0 +1,11 @@
+{{outlet}}
+<h1>Users</h1>
+{{#each model as |User|}}
+    <div class="row">
+        {{user-listing name=User.name id=User.id class="col-md-8"}}
+    </div>
+{{/each}}
+<div class="row form-group form-inline">
+    <h1 class="col-xs-12">Add User</h1>
+    <div class="col-md-8">{{input value=name placeholder="User name" class="form-control"}}<button class="btn btn-primary"{{ action "addUser"}}>+</button></div>
+</div>

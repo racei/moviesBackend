@@ -1,0 +1,16 @@
+{{outlet}}
+<div class="form-group form-inline">
+    <h1>Add a New Movie</h1>
+    {{input class="form-control" value=title placeholder="Title"}}
+    {{input class="form-control" value=yearReleased placeholder="Year"}}
+    {{input class="form-control" value=length placeholder="Length"}}
+    <button class="btn btn-primary"{{action "addMovie"}}>+</button>
+    {{#each errors as |error|}}
+        <p class="text-danger"> {{error}}</p>
+    {{/each}}
+</div>
+{{#each movies as |movieRecord|}} 
+    <div class="row">
+        {{movie-listing movie=movieRecord users=users class="col-md-8"}}
+    </div>
+{{/each}}

@@ -10,9 +10,7 @@ namespace MoviesWatched.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
-            return View();
+            return File(Server.MapPath("~/moviesFrontend/dist/") + "index.html", "text/html");
         }
     }
 }
