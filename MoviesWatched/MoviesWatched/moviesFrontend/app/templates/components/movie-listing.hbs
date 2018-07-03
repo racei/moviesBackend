@@ -16,12 +16,11 @@
                 </li>
             {{/each}}
         </ul>
-        Select a user to add:
-        <select class="form-control">
-            {{#each users as |user|}}
-                <option {{action "addUserToMovie" movie user}}value={{user.id}}>{{user.name}}</option>
-            {{/each}}
-        </select>
+        Select users to add:
+        {{#each users as |user|}}
+            <input type="checkbox" {{action "addUserToMovie" movie user}}value={{user.id}}>{{user.name}}
+        {{/each}}
+
         <div>
             <button class="btn btn-primary" {{action "saveMovie" movie}}>Save</button>
             <button class="btn btn-danger" {{action "deleteMovie" movie.id}}>Delete Movie</button>
