@@ -24,7 +24,7 @@ export default Controller.extend({
             if(!regexYear.exec(this.yearReleased)){
                 newErrors.push("Year must be entered");
             }
-            if(newErrors != []){
+            if(newErrors.length != 0){
                 this.set('errors', newErrors);
                 return;
             }

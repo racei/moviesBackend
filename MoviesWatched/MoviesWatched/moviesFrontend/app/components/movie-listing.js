@@ -30,7 +30,7 @@ export default Component.extend({
             movie.save();
 
 
-        }
+        },
 
 
         
