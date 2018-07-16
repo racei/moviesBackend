@@ -13,6 +13,12 @@ namespace MoviesWatched
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(name: "Movies", url: "Movies",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
+            routes.MapRoute(name: "Users", url: "Users",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
