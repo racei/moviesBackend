@@ -13,11 +13,12 @@
                 <li class="list-group-item">
                     {{user.name}}
                     <button class="btn btn-danger" {{action "removeUserFromMovie" movie user}}>X</button>
+
                 </li>
             {{/each}}
         </ul>
         Select users to add:
-        {{#each users as |user|}}
+        {{#each usersNotWatched as |user|}}
             <input type="checkbox" {{action "addUserToMovie" movie user}}value={{user.id}}>{{user.name}}
         {{/each}}
 

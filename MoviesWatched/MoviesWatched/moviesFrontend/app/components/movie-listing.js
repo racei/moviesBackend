@@ -1,10 +1,24 @@
 import Component from '@ember/component';
-import {inject as service} from '@ember/service';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Component.extend({
     editing: false,
     movie: null,
     users: null,
+  usersNotWatched: computed('movie.usersWatched.[]', function () {
+    let allUsers = this.get('users');
+    let movie = this.get('movie');
+    let ids = movie.get('usersWatched').map((user) => user.get('id'));
+    let newUsers = [];
+    allUsers.forEach(function (ele) {
+      var userID = ele.get('id');
+      if (!ids.includes(userID)) {
+        newUsers.push(ele);
+      }
+    });
+    return newUsers;
+  }),
     store: service(),
     actions:{
         deleteMovie(id){
