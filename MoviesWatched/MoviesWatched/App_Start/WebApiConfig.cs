@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using System.Web.Http.Cors;
 using System.Web.Http.Filters;
 using Newtonsoft.Json.Serialization;
 
@@ -17,7 +18,8 @@ namespace MoviesWatched
             // Web API configuration and services
 
             // Web API routes
-            config.EnableCors();
+            var cors = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
+            config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
                 = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
