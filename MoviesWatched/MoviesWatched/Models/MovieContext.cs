@@ -11,6 +11,7 @@ namespace MoviesWatched.Models
         public MovieContext()
         {
             Database.Log = msg => System.Diagnostics.Debug.WriteLine(msg);
+            Configuration.LazyLoadingEnabled = false;
         }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<User> Users { get; set; }

@@ -23,14 +23,14 @@ namespace MoviesWatched.Controllers
         // GET: api/Movies
         public IQueryable<Movie> GetMovies()
         {
-            return db.Movies;
+            return db.Movies.Include(x => x.UsersWatched);
         }
 
         // GET: api/Movies/5
         [ResponseType(typeof(Movie))]
         public IHttpActionResult GetMovie(int id)
         {
-            Movie movie = db.Movies.Find(id);
+            Movie movie = db.Movies.Include(x => x.UsersWatched).SingleOrDefault(x => x.ID == id);
             if (movie == null)
             {
                 return NotFound();

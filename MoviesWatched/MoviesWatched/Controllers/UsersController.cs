@@ -21,14 +21,14 @@ namespace MoviesWatched.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return db.Users.Include(x => x.MoviesWatched);
         }
 
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            User user = db.Users.Find(id);
+            User user = db.Users.Include(x => x.MoviesWatched).SingleOrDefault(x => x.ID == id);
             if (user == null)
             {
                 return NotFound();
